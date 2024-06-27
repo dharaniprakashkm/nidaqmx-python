@@ -55,6 +55,9 @@ _YUM_INSTALL_COMMANDS = [
     ["dkms", "autoinstall"],
 ]
 
+_DEBIAN_DAQMX_VERSION_COMMAND = ["dpkg", "-l", "ni-daqmx"]
+_RPM_DAQMX_VERSION_COMMAND = ["rpm", "-q", "ni-daqmx"]
+
 @dataclass
 class DistroInfo:
     get_distro_version: Callable[[str], str]
