@@ -94,7 +94,7 @@ def _get_daqmx_installed_version() -> Optional[str]:
         try:
             _logger.debug("Checking for installed NI-DAQmx version")
             commands_info = LINUX_COMMANDS[distro.id()]
-            query_command = commands_info["get_daqmx_version"]
+            query_command = commands_info.get_daqmx_version
             query_output = subprocess.run(query_command, stdout=subprocess.PIPE, text=True).stdout
 
             if distro.id() == "ubuntu":
