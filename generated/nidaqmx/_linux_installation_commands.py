@@ -18,15 +18,15 @@ def _get_version_rhel(dist_version: str) -> str:
 
 # Command templates
 _APT_INSTALL_COMMANDS = [
-    ["apt", "update"],
+    ["sudo", "apt", "update"],
     [
         "apt",
         "install",
         "{directory}/NILinux{release}DeviceDrivers/ni-ubuntu{version}-drivers-{release}.deb",
     ],
-    ["apt", "update"],
-    ["apt", "install", "ni-daqmx"],
-    ["dkms", "autoinstall"],
+    ["sudo", "apt", "update"],
+    ["sudo", "apt", "install", "ni-daqmx"],
+    ["sudo", "dkms", "autoinstall"],
 ]
 
 _ZYPPER_INSTALL_COMMANDS = [
@@ -74,6 +74,8 @@ LINUX_COMMANDS = {
     "rhel": DistroInfo(_get_version_rhel, _RPM_DAQMX_VERSION_COMMAND, _YUM_INSTALL_COMMANDS),
 }
 
+commands_info = LINUX_COMMANDS[distro.id()]
+query_command = commands_info.get_daqmx_version
 
 def get_linux_installation_commands(
     _directory_to_extract_to: str, dist_name: str, dist_version: str, _release_string: str
