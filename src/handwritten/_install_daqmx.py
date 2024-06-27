@@ -100,7 +100,7 @@ def _get_daqmx_installed_version() -> Optional[str]:
 
             if distribution == "ubuntu":
                 version_match = re.search(r"ii\s+ni-daqmx\s+(\d+\.\d+\.\d+)", query_output)
-            elifdistribution == "opensuse" or distribution == "rhel":
+            elif distribution == "opensuse" or distribution == "rhel":
                 version_match = re.search(r"ni-daqmx-(\d+\.\d+\.\d+)", query_output)
             else:
                 raise click.ClickException(f"Unsupported distribution '{distribution}'")
