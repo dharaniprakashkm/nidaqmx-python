@@ -20,6 +20,7 @@ def _get_version_rhel(dist_version: str) -> str:
 _APT_INSTALL_COMMANDS = [
     ["sudo", "apt", "update"],
     [
+        "sudo",
         "apt",
         "install",
         "{directory}/NILinux{release}DeviceDrivers/ni-ubuntu{version}-drivers-{release}.deb",
