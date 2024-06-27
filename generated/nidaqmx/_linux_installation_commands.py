@@ -71,9 +71,6 @@ LINUX_COMMANDS = {
     "rhel": DistroInfo(_get_version_rhel, _RPM_DAQMX_VERSION_COMMAND, _YUM_INSTALL_COMMANDS),
 }
 
-commands_info = LINUX_COMMANDS[distro.id()]
-query_command = commands_info.get_daqmx_version
-
 def get_linux_installation_commands(
     _directory_to_extract_to: str, dist_name: str, dist_version: str, _release_string: str
 ) -> List[List[str]]:
