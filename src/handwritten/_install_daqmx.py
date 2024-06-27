@@ -92,17 +92,18 @@ def _get_daqmx_installed_version() -> Optional[str]:
             ) from e
     elif sys.platform.startswith("linux"):
         try:
+            distribution = distro.id()
             _logger.debug("Checking for installed NI-DAQmx version")
-            commands_info = LINUX_COMMANDS[distro.id()]
+            commands_info = LINUX_COMMANDS[distribution]
             query_command = commands_info.get_daqmx_version
             query_output = subprocess.run(query_command, stdout=subprocess.PIPE, text=True).stdout
 
-            if distro.id() == "ubuntu":
+            if distribution == "ubuntu":
                 version_match = re.search(r"ii\s+ni-daqmx\s+(\d+\.\d+\.\d+)", query_output)
-            elif distro.id() == "opensuse" or distro.id() == "rhel":
+            elifdistribution == "opensuse" or distribution == "rhel":
                 version_match = re.search(r"ni-daqmx-(\d+\.\d+\.\d+)", query_output)
             else:
-                raise click.ClickException(f"Unsupported distribution '{distro.id()}'")
+                raise click.ClickException(f"Unsupported distribution '{distribution}'")
             if version_match is None:
                 return None
             else:
